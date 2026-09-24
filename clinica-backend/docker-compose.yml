@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: clinica-postgres
+    environment:
+      POSTGRES_DB: clinicamedica
+      POSTGRES_USER: clinica
+      POSTGRES_PASSWORD: develop
+    ports:
+      - "55432:5432" # Porta 55432 local pq ja tenho um postgres rodando na maquina
+    volumes:
+      - ./develop/postgres_data:/var/lib/postgresql
