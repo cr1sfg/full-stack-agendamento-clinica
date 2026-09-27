@@ -1,0 +1,16 @@
+package com.cristianagoncalvesproject.ClinicaMedica.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.CONFLICT)
+public class CpfJaCadastradoException extends RuntimeException {
+
+    public CpfJaCadastradoException() {
+        super("CPF já cadastrado.");
+    }
+
+    public CpfJaCadastradoException(String message) {
+        super(message);
+    }
+}
