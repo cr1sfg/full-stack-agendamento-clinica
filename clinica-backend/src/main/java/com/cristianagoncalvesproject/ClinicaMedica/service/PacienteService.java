@@ -1,15 +1,15 @@
 package com.cristianagoncalvesproject.ClinicaMedica.service;
 
-import static com.cristianagoncalvesproject.ClinicaMedica.controller.dto.PacienteResponseDTO.fromPaciente;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cristianagoncalvesproject.ClinicaMedica.controller.dto.CriarPacienteRequestDTO;
-import com.cristianagoncalvesproject.ClinicaMedica.controller.dto.PacienteResponseDTO;
+import com.cristianagoncalvesproject.ClinicaMedica.dto.CriarPacienteRequestDTO;
+import com.cristianagoncalvesproject.ClinicaMedica.dto.PacienteResponseDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.exception.CpfJaCadastradoException;
 import com.cristianagoncalvesproject.ClinicaMedica.exception.PacienteNaoEncontradoException;
+import com.cristianagoncalvesproject.ClinicaMedica.mapper.PacienteMapper;
 import com.cristianagoncalvesproject.ClinicaMedica.model.Paciente;
 import com.cristianagoncalvesproject.ClinicaMedica.repository.PacienteRepository;
 
@@ -20,27 +20,28 @@ import lombok.RequiredArgsConstructor;
 public class PacienteService {
 
     private final PacienteRepository repository;
+    private final PacienteMapper pacienteMapper;
 
     public PacienteResponseDTO cadastrar(CriarPacienteRequestDTO request) {
         if (repository.existsByCpfIgnoreCase(request.getCpf())) {
             throw new CpfJaCadastradoException();
         }
 
-        Paciente paciente = request.toModel();
+        Paciente paciente = pacienteMapper.fromRequestDTO(request);
         Paciente salvo = repository.save(paciente);
-        return fromPaciente(salvo);
+        return pacienteMapper.toResponseDTO(salvo);
     }
 
     public List<PacienteResponseDTO> listarTodos() {
         return repository.findAll().stream()
-                .map(PacienteResponseDTO::fromPaciente)
+                .map(pacienteMapper::toResponseDTO)
                 .toList();
     }
 
     public PacienteResponseDTO buscarPorId(Long id) {
         Paciente paciente = repository.findById(id)
                 .orElseThrow(PacienteNaoEncontradoException::new);
-        return fromPaciente(paciente);
+        return pacienteMapper.toResponseDTO(paciente);
     }
 
     public PacienteResponseDTO atualizar(Long id, CriarPacienteRequestDTO request) {
@@ -63,7 +64,7 @@ public class PacienteService {
         }
 
         Paciente atualizado = repository.save(paciente);
-        return fromPaciente(atualizado);
+        return pacienteMapper.toResponseDTO(atualizado);
     }
 
     public void deletar(Long id) {

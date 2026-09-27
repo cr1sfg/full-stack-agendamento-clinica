@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cristianagoncalvesproject.ClinicaMedica.controller.dto.CriarPacienteRequestDTO;
-import com.cristianagoncalvesproject.ClinicaMedica.controller.dto.PacienteResponseDTO;
+import com.cristianagoncalvesproject.ClinicaMedica.dto.CriarPacienteRequestDTO;
+import com.cristianagoncalvesproject.ClinicaMedica.dto.PacienteResponseDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.service.PacienteService;
 
 import lombok.RequiredArgsConstructor;
