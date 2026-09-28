@@ -10,15 +10,15 @@ http:
   url: "{{baseUrl}}/pacientes/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
   body:
     type: json
     data: |-
       {
-        "cpf": "",
-        "nome": "",
-        "dataNascimento": ""
+        "cpf": "52998224725",
+        "nome": "{{$randomFullName}}",
+        "dataNascimento": "1992-06-15"
       }
   auth: inherit
 
@@ -37,15 +37,15 @@ examples:
       method: PUT
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
       body:
         type: json
         data: |-
           {
-            "cpf": "",
-            "nome": "",
-            "dataNascimento": ""
+            "cpf": "52998224725",
+            "nome": "Camila Ferreira",
+            "dataNascimento": "1992-06-15"
           }
     response:
       status: 200
@@ -57,8 +57,8 @@ examples:
         type: text
         data: |-
           {
-            "id": 0,
-            "cpf": "",
-            "nome": "",
-            "dataNascimento": ""
+            "id": 1,
+            "cpf": "52998224725",
+            "nome": "Camila Ferreira",
+            "dataNascimento": "1992-06-15"
           }

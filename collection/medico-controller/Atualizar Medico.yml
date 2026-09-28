@@ -12,10 +12,10 @@ http:
     type: json
     data: |-
       {
-        "id": 0,
-        "crm": "",
-        "nome": "",
-        "especialidade": ""
+        "id": 1,
+        "crm": "54321",
+        "nome": "{{$randomFullName}}",
+        "especialidade": "Clínica Médica"
       }
   auth: inherit
 
@@ -36,10 +36,10 @@ examples:
         type: json
         data: |-
           {
-            "id": 0,
-            "crm": "",
-            "nome": "",
-            "especialidade": ""
+            "id": 1,
+            "crm": "54321",
+            "nome": "Dr. Rafael Martins",
+            "especialidade": "Clínica Médica"
           }
     response:
       status: 200
@@ -51,8 +51,8 @@ examples:
         type: text
         data: |-
           {
-            "id": 0,
-            "crm": "",
-            "nome": "",
-            "especialidade": ""
+            "id": 1,
+            "crm": "54321",
+            "nome": "Dr. Rafael Martins",
+            "especialidade": "Clínica Médica"
           }

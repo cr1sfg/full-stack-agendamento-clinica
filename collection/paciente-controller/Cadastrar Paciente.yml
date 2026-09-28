@@ -12,9 +12,9 @@ http:
     type: json
     data: |-
       {
-        "cpf": "",
-        "nome": "",
-        "dataNascimento": ""
+        "cpf": "52998224725",
+        "nome": "{{$randomFullName}}",
+        "dataNascimento": "1992-06-15"
       }
   auth: inherit
 
@@ -35,9 +35,9 @@ examples:
         type: json
         data: |-
           {
-            "cpf": "",
-            "nome": "",
-            "dataNascimento": ""
+            "cpf": "52998224725",
+            "nome": "Camila Ferreira",
+            "dataNascimento": "1992-06-15"
           }
     response:
       status: 201
@@ -49,8 +49,8 @@ examples:
         type: text
         data: |-
           {
-            "id": 0,
-            "cpf": "",
-            "nome": "",
-            "dataNascimento": ""
+            "id": 1,
+            "cpf": "52998224725",
+            "nome": "Camila Ferreira",
+            "dataNascimento": "1992-06-15"
           }

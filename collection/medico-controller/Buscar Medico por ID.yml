@@ -10,7 +10,7 @@ http:
   url: "{{baseUrl}}/medicos/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
   auth: inherit
 
@@ -29,7 +29,7 @@ examples:
       method: GET
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
     response:
       status: 200
@@ -41,8 +41,8 @@ examples:
         type: text
         data: |-
           {
-            "id": 0,
-            "crm": "",
-            "nome": "",
-            "especialidade": ""
+            "id": 1,
+            "crm": "EME12345/SP",
+            "nome": "Dr. Rafael Martins",
+            "especialidade": "Cardiologia"
           }

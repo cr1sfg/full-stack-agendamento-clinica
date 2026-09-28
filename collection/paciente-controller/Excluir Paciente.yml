@@ -10,7 +10,7 @@ http:
   url: "{{baseUrl}}/pacientes/:id"
   params:
     - name: id
-      value: ""
+      value: "1"
       type: path
   auth: inherit
 
@@ -29,7 +29,7 @@ examples:
       method: DELETE
       params:
         - name: id
-          value: ""
+          value: "1"
           type: path
     response:
       status: 204
