@@ -12,9 +12,9 @@ http:
     type: json
     data: |-
       {
-        "cpf": "52998224725",
+        "cpf": "31926203070",
         "nome": "{{$randomFullName}}",
-        "dataNascimento": "1992-06-15"
+        "dataNascimento": "2001-08-15"
       }
   auth: inherit
 
@@ -24,33 +24,3 @@ settings:
   followRedirects: true
   maxRedirects: 5
   forwardAuthorizationHeader: false
-
-examples:
-  - name: 201 Response
-    description: Created
-    request:
-      url: "{{baseUrl}}/pacientes"
-      method: POST
-      body:
-        type: json
-        data: |-
-          {
-            "cpf": "52998224725",
-            "nome": "Camila Ferreira",
-            "dataNascimento": "1992-06-15"
-          }
-    response:
-      status: 201
-      statusText: Created
-      headers:
-        - name: Content-Type
-          value: "*/*"
-      body:
-        type: text
-        data: |-
-          {
-            "id": 1,
-            "cpf": "52998224725",
-            "nome": "Camila Ferreira",
-            "dataNascimento": "1992-06-15"
-          }

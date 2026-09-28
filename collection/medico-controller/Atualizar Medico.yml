@@ -13,8 +13,7 @@ http:
     data: |-
       {
         "id": 1,
-        "crm": "54321",
-        "nome": "{{$randomFullName}}",
+        "crm": "54321/SC",
         "especialidade": "Clínica Médica"
       }
   auth: inherit
@@ -25,34 +24,3 @@ settings:
   followRedirects: true
   maxRedirects: 5
   forwardAuthorizationHeader: false
-
-examples:
-  - name: 200 Response
-    description: OK
-    request:
-      url: "{{baseUrl}}/medicos"
-      method: PUT
-      body:
-        type: json
-        data: |-
-          {
-            "id": 1,
-            "crm": "54321",
-            "nome": "Dr. Rafael Martins",
-            "especialidade": "Clínica Médica"
-          }
-    response:
-      status: 200
-      statusText: OK
-      headers:
-        - name: Content-Type
-          value: "*/*"
-      body:
-        type: text
-        data: |-
-          {
-            "id": 1,
-            "crm": "54321",
-            "nome": "Dr. Rafael Martins",
-            "especialidade": "Clínica Médica"
-          }

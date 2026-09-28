@@ -5,6 +5,8 @@ import com.cristianagoncalvesproject.ClinicaMedica.dto.AgendamentoResponseDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.service.agendamento.AgendamentoService;
 import jakarta.validation.Valid;
 import java.net.URI;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,5 +34,10 @@ public class AgendamentoController {
     public ResponseEntity<AgendamentoResponseDTO> cadastrar(@Valid @RequestBody AgendamentoRequestDTO request) {
         AgendamentoResponseDTO agendamento = agendamentoService.cadastrar(request);
         return ResponseEntity.created(URI.create("/agendamentos/" + agendamento.id())).body(agendamento);
+    }
+
+    @GetMapping
+    public List<AgendamentoResponseDTO> listarTodos() {
+        return agendamentoService.listarTodos();
     }
 }

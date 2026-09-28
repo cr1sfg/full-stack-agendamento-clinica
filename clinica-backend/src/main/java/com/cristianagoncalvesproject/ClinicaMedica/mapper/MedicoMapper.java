@@ -18,9 +18,17 @@ public class MedicoMapper {
     }
 
     public void updateDomain(MedicoUpdateRequest request, Medico medico) {
-        medico.setCrm(request.crm());
-        medico.setNome(request.nome());
-        medico.setEspecialidade(request.especialidade());
+        if(request.crm() != null) {
+            medico.setCrm(request.crm());
+        }
+
+        if(request.nome() != null) {
+            medico.setNome(request.nome());
+        }
+
+        if(request.especialidade() != null) {
+            medico.setEspecialidade(request.especialidade());
+        }
     }
 
     public MedicoResponse toResponse(Medico medico) {

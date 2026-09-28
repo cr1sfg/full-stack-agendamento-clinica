@@ -1,5 +1,7 @@
 package com.cristianagoncalvesproject.ClinicaMedica.service.agendamento;
 
+import java.util.List;
+
 import com.cristianagoncalvesproject.ClinicaMedica.dto.AgendamentoRequestDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.AgendamentoResponseDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.mapper.AgendamentoMapper;
@@ -14,29 +16,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class AgendamentoService {
-
     private final AgendamentoRepository agendamentoRepository;
     private final MedicoRepository medicoRepository;
     private final PacienteRepository pacienteRepository;
     private final AgendamentoMapper agendamentoMapper;
     private final AgendamentoRegraService agendamentoRegraService;
-
-    public AgendamentoService(
-        AgendamentoRepository agendamentoRepository,
-        MedicoRepository medicoRepository,
-        PacienteRepository pacienteRepository,
-        AgendamentoMapper agendamentoMapper,
-        AgendamentoRegraService agendamentoRegraService
-    ) {
-        this.agendamentoRepository = agendamentoRepository;
-        this.medicoRepository = medicoRepository;
-        this.pacienteRepository = pacienteRepository;
-        this.agendamentoMapper = agendamentoMapper;
-        this.agendamentoRegraService = agendamentoRegraService;
-    }
 
     public AgendamentoResponseDTO cadastrar(AgendamentoRequestDTO request) {
         Medico medico = medicoRepository.findById(request.medicoId())
@@ -47,6 +37,12 @@ public class AgendamentoService {
         Agendamento agendamento = agendamentoMapper.toDomain(request, medico, paciente);
         agendamentoRegraService.validar(agendamento);
         return agendamentoMapper.toResponseDTO(agendamentoRepository.save(agendamento));
+    }
+
+    public List<AgendamentoResponseDTO> listarTodos() {
+        return agendamentoRepository.findAll().stream()
+            .map(agendamentoMapper::toResponseDTO)
+            .toList();
     }
 
     public AgendamentoResponseDTO buscarPorId(Long id) {

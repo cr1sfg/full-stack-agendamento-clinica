@@ -10,7 +10,7 @@ public record MedicoUpdateRequest(
     @Positive(message = "Id deve ser positivo.")
     Long id,
 
-    @Pattern(regexp = "\\d{4,6}", message = "CRM deve conter de 4 a 6 dígitos.")
+    @Pattern(regexp = "(EME|300)*\\d{1,6}P*/\\w{2}", message = "CRM deve estar no formato correto (ex: 12345/RS).")
     String crm,
 
     String nome,

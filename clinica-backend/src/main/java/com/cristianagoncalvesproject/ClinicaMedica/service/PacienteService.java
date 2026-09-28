@@ -14,9 +14,11 @@ import com.cristianagoncalvesproject.ClinicaMedica.mapper.PacienteMapper;
 import com.cristianagoncalvesproject.ClinicaMedica.model.Paciente;
 import com.cristianagoncalvesproject.ClinicaMedica.repository.PacienteRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class PacienteService {
 
@@ -49,7 +51,8 @@ public class PacienteService {
         Paciente paciente = repository.findById(id)
                 .orElseThrow(PacienteNaoEncontradoException::new);
 
-        if (!request.getCpf().equalsIgnoreCase(paciente.getCpf())
+        if (request.getCpf() != null
+            && !request.getCpf().equalsIgnoreCase(paciente.getCpf())
             && repository.existsByCpf(request.getCpf())) {
             throw new CpfJaCadastradoException();
         }

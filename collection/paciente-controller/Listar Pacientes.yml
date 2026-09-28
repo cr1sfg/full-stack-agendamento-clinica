@@ -16,27 +16,3 @@ settings:
   followRedirects: true
   maxRedirects: 5
   forwardAuthorizationHeader: false
-
-examples:
-  - name: 200 Response
-    description: OK
-    request:
-      url: "{{baseUrl}}/pacientes"
-      method: GET
-    response:
-      status: 200
-      statusText: OK
-      headers:
-        - name: Content-Type
-          value: "*/*"
-      body:
-        type: text
-        data: |-
-          [
-            {
-              "id": 1,
-              "cpf": "52998224725",
-              "nome": "Camila Ferreira",
-              "dataNascimento": "1992-06-15"
-            }
-          ]

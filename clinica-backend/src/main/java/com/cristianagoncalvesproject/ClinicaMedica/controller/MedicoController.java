@@ -5,7 +5,11 @@ import com.cristianagoncalvesproject.ClinicaMedica.dto.MedicoResponse;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.MedicoUpdateRequest;
 import com.cristianagoncalvesproject.ClinicaMedica.service.MedicoService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
 import java.net.URI;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,12 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/medicos")
+@RequiredArgsConstructor
 public class MedicoController {
-
     private final MedicoService medicoService;
 
-    public MedicoController(MedicoService medicoService) {
-        this.medicoService = medicoService;
+    @GetMapping
+    public List<MedicoResponse> listarTodos() {
+        return medicoService.listarTodos();
     }
 
     @GetMapping("/{id}")
@@ -35,7 +40,7 @@ public class MedicoController {
 
     @GetMapping("/crm/{crm}")
     public MedicoResponse buscarPorCrm(@PathVariable String crm) {
-        return medicoService.buscarPorCrm(crm);
+        return medicoService.buscarPorCrm(crm.replace("-", "/"));
     }
 
     @PostMapping

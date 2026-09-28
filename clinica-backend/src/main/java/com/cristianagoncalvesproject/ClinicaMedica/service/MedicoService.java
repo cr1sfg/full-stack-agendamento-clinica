@@ -1,5 +1,7 @@
 package com.cristianagoncalvesproject.ClinicaMedica.service;
 
+import java.util.List;
+
 import com.cristianagoncalvesproject.ClinicaMedica.dto.MedicoRequest;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.MedicoResponse;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.MedicoUpdateRequest;
@@ -10,15 +12,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-@Service
-public class MedicoService {
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
+@Service
+@Transactional
+@RequiredArgsConstructor
+public class MedicoService {
     private final MedicoRepository medicoRepository;
     private final MedicoMapper medicoMapper;
 
-    public MedicoService(MedicoRepository medicoRepository, MedicoMapper medicoMapper) {
-        this.medicoRepository = medicoRepository;
-        this.medicoMapper = medicoMapper;
+    public List<MedicoResponse> listarTodos() {
+        return medicoRepository.findAll().stream()
+            .map(medicoMapper::toResponse)
+            .toList();
     }
 
     public MedicoResponse buscarPorId(Long id) {
