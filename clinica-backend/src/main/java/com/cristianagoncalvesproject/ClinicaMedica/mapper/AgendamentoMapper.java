@@ -9,8 +9,13 @@ import com.cristianagoncalvesproject.ClinicaMedica.model.Medico;
 import com.cristianagoncalvesproject.ClinicaMedica.model.Paciente;
 import org.springframework.stereotype.Component;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class AgendamentoMapper {
+    private final PacienteMapper pacienteMapper;
+    private final MedicoMapper medicoMapper;
 
     public Agendamento toDomain(AgendamentoRequestDTO request, Medico medico, Paciente paciente) {
         Agendamento agendamento = new Agendamento();
@@ -27,13 +32,8 @@ public class AgendamentoMapper {
         return new AgendamentoResponseDTO(
             agendamento.getId(),
             agendamento.getData(),
-            new MedicoResponse(medico.getId(), medico.getCrm(), medico.getNome(), medico.getEspecialidade()),
-            PacienteResponseDTO.builder()
-                .id(paciente.getId())
-                .cpf(paciente.getCpf())
-                .nome(paciente.getNome())
-                .dataNascimento(paciente.getDataNascimento())
-                .build()
+            medicoMapper.toResponse(medico),
+            pacienteMapper.toResponseDTO(paciente)
         );
     }
 }

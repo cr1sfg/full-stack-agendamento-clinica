@@ -2,7 +2,7 @@ package com.cristianagoncalvesproject.ClinicaMedica.controller;
 
 import com.cristianagoncalvesproject.ClinicaMedica.dto.AgendamentoRequestDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.AgendamentoResponseDTO;
-import com.cristianagoncalvesproject.ClinicaMedica.service.AgendamentoService;
+import com.cristianagoncalvesproject.ClinicaMedica.service.agendamento.AgendamentoService;
 import jakarta.validation.Valid;
 import java.net.URI;
 import org.springframework.http.ResponseEntity;

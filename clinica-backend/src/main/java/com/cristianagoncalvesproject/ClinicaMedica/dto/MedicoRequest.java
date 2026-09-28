@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Pattern;
 
 public record MedicoRequest(
     @NotBlank(message = "CRM é obrigatório.")
-    @Pattern(regexp = "\\d{4,6}", message = "CRM deve conter de 4 a 6 dígitos.")
+    @Pattern(regexp = "(EME|300)*\\d{1,6}P*/\\w{2}", message = "CRM deve conter de 4 a 6 dígitos.")
     String crm,
 
     @NotBlank(message = "Nome é obrigatório.")

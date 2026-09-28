@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cristianagoncalvesproject.ClinicaMedica.dto.AtualizarPacienteRequestDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.CriarPacienteRequestDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.PacienteResponseDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.service.PacienteService;
@@ -46,7 +47,7 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public PacienteResponseDTO atualizar(@PathVariable Long id, @RequestBody @Valid CriarPacienteRequestDTO request) {
+    public PacienteResponseDTO atualizar(@PathVariable Long id, @RequestBody @Valid AtualizarPacienteRequestDTO request) {
         return service.atualizar(id, request);
     }
 

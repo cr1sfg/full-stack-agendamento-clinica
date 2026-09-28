@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cristianagoncalvesproject.ClinicaMedica.dto.AtualizarPacienteRequestDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.CriarPacienteRequestDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.PacienteResponseDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.exception.CpfJaCadastradoException;
@@ -23,7 +24,7 @@ public class PacienteService {
     private final PacienteMapper pacienteMapper;
 
     public PacienteResponseDTO cadastrar(CriarPacienteRequestDTO request) {
-        if (repository.existsByCpfIgnoreCase(request.getCpf())) {
+        if (repository.existsByCpf(request.getCpf())) {
             throw new CpfJaCadastradoException();
         }
 
@@ -44,12 +45,12 @@ public class PacienteService {
         return pacienteMapper.toResponseDTO(paciente);
     }
 
-    public PacienteResponseDTO atualizar(Long id, CriarPacienteRequestDTO request) {
+    public PacienteResponseDTO atualizar(Long id, AtualizarPacienteRequestDTO request) {
         Paciente paciente = repository.findById(id)
                 .orElseThrow(PacienteNaoEncontradoException::new);
 
         if (!request.getCpf().equalsIgnoreCase(paciente.getCpf())
-            && repository.existsByCpfIgnoreCase(request.getCpf())) {
+            && repository.existsByCpf(request.getCpf())) {
             throw new CpfJaCadastradoException();
         }
 

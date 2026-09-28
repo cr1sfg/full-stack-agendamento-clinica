@@ -1,6 +1,8 @@
 package com.cristianagoncalvesproject.ClinicaMedica.dto;
 
 import java.time.LocalDateTime;
+
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 
 public record AgendamentoRequestDTO(

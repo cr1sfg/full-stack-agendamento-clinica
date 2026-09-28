@@ -1,4 +1,4 @@
-package com.cristianagoncalvesproject.ClinicaMedica.service;
+package com.cristianagoncalvesproject.ClinicaMedica.service.agendamento;
 
 import com.cristianagoncalvesproject.ClinicaMedica.dto.AgendamentoRequestDTO;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.AgendamentoResponseDTO;

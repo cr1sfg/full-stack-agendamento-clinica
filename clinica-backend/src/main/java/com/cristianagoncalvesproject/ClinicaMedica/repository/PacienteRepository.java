@@ -7,6 +7,5 @@ import com.cristianagoncalvesproject.ClinicaMedica.model.Paciente;
 
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
-
-    boolean existsByCpfIgnoreCase(String cpf);
+    boolean existsByCpf(String cpf);
 }
