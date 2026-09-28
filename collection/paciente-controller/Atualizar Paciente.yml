@@ -1,0 +1,64 @@
+info:
+  name: Atualizar Paciente
+  type: http
+  seq: 2
+  tags:
+    - paciente-controller
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/pacientes/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "cpf": "",
+        "nome": "",
+        "dataNascimento": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/pacientes/:id"
+      method: PUT
+      params:
+        - name: id
+          value: ""
+          type: path
+      body:
+        type: json
+        data: |-
+          {
+            "cpf": "",
+            "nome": "",
+            "dataNascimento": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "id": 0,
+            "cpf": "",
+            "nome": "",
+            "dataNascimento": ""
+          }

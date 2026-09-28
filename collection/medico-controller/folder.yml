@@ -1,0 +1,6 @@
+info:
+  name: medico-controller
+  type: folder
+
+request:
+  auth: inherit

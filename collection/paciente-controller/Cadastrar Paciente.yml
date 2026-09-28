@@ -1,0 +1,56 @@
+info:
+  name: Cadastrar Paciente
+  type: http
+  seq: 5
+  tags:
+    - paciente-controller
+
+http:
+  method: POST
+  url: "{{baseUrl}}/pacientes"
+  body:
+    type: json
+    data: |-
+      {
+        "cpf": "",
+        "nome": "",
+        "dataNascimento": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 201 Response
+    description: Created
+    request:
+      url: "{{baseUrl}}/pacientes"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "cpf": "",
+            "nome": "",
+            "dataNascimento": ""
+          }
+    response:
+      status: 201
+      statusText: Created
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "id": 0,
+            "cpf": "",
+            "nome": "",
+            "dataNascimento": ""
+          }

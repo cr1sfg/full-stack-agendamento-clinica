@@ -1,0 +1,6 @@
+info:
+  name: paciente-controller
+  type: folder
+
+request:
+  auth: inherit

@@ -1,0 +1,6 @@
+info:
+  name: agendamento-controller
+  type: folder
+
+request:
+  auth: inherit

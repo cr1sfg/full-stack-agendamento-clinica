@@ -1,0 +1,66 @@
+info:
+  name: Cadastrar Agendamento
+  type: http
+  seq: 1
+  tags:
+    - agendamento-controller
+
+http:
+  method: POST
+  url: "{{baseUrl}}/agendamentos"
+  body:
+    type: json
+    data: |-
+      {
+        "medicoId": 0,
+        "pacienteId": 0,
+        "data": ""
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/agendamentos"
+      method: POST
+      body:
+        type: json
+        data: |-
+          {
+            "medicoId": 0,
+            "pacienteId": 0,
+            "data": ""
+          }
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "id": 0,
+            "data": "",
+            "medico": {
+              "id": 0,
+              "crm": "",
+              "nome": "",
+              "especialidade": ""
+            },
+            "paciente": {
+              "id": 0,
+              "cpf": "",
+              "nome": "",
+              "dataNascimento": ""
+            }
+          }

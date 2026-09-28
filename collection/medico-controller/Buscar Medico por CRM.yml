@@ -1,0 +1,48 @@
+info:
+  name: Buscar Medico por CRM
+  type: http
+  seq: 5
+  tags:
+    - medico-controller
+
+http:
+  method: GET
+  url: "{{baseUrl}}/medicos/crm/:crm"
+  params:
+    - name: crm
+      value: ""
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/medicos/crm/:crm"
+      method: GET
+      params:
+        - name: crm
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "id": 0,
+            "crm": "",
+            "nome": "",
+            "especialidade": ""
+          }

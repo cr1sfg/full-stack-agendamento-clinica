@@ -1,0 +1,48 @@
+info:
+  name: Buscar Paciente por ID
+  type: http
+  seq: 1
+  tags:
+    - paciente-controller
+
+http:
+  method: GET
+  url: "{{baseUrl}}/pacientes/:id"
+  params:
+    - name: id
+      value: ""
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/pacientes/:id"
+      method: GET
+      params:
+        - name: id
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: "*/*"
+      body:
+        type: text
+        data: |-
+          {
+            "id": 0,
+            "cpf": "",
+            "nome": "",
+            "dataNascimento": ""
+          }
