@@ -1,28 +1,43 @@
-import { useDispatch } from 'react-redux'
+import { useState, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import {ContainerFormulario, Titulo, FormularioPadrao, BotaoFormulario} from "../../styles/GlobalStyles"
-
-import { FormEvent, useState } from 'react'
-import { cadastrar } from '../../store/reducers/cadastroMedico'
+import api from '../../services/api'
 
 const FormularioMedico = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [nome, setNome] = useState('')
   const [crm, setCrm] = useState('')
   const [especialidade, setEspecialidade] = useState('')
   const crmNumero = Number(crm)
 
-  const cadastrarMedico = (evento: React.FormEvent<HTMLFormElement>) => {
+  const cadastrarMedico = async (evento: React.FormEvent<HTMLFormElement>) => {
     evento.preventDefault()
     const novoMedico = {nome, crm: crmNumero, especialidade}
 
-    dispatch(cadastrar(novoMedico))
-    setNome('')
-    setCrm('')
-    setEspecialidade('')
-    navigate('/')
+    try {
+      await api.post("/medicos/cadastro", novoMedico) // chamada ao back-end
+      alert("Médico cadastrado com sucesso!")
+      setNome('')
+      setCrm('')
+      setEspecialidade('')
+      navigate('/')
+    } catch (error: any) {
+      if (error.response) {
+        // O servidor respondeu com um status fora da faixa 2xx
+        console.log("Status:", error.response.status);
+        console.log("Dados:", error.response.data);
+        alert(error.response.data)
+      } else if (error.request) {
+        // A requisição foi feita, mas não houve resposta
+        console.log("Sem resposta do servidor:", error.request);
+        alert(error.response.request)
+      } else {
+        // Algo deu errado na configuração da requisição
+        console.log("Erro:", error.message);
+        alert("Erro para cadastrar novo médico")
+      }
+    }
   }
 
   return (
@@ -41,3 +56,20 @@ const FormularioMedico = () => {
 }
 
 export default FormularioMedico
+
+/*
+editar: (state, action: PayloadAction<Medico>) => {
+      const medicoJaExiste = state.itens.find(
+        (medico) =>
+          medico.crm === action.payload.crm &&
+          medico.crm !== action.payload.crm
+      )
+      if (medicoJaExiste) {
+        alert('Médico já cadastrado')
+        return
+      }
+      const idx = state.itens.findIndex((c) => c.crm === action.payload.crm)
+      if (idx !== -1) {
+        state.itens[idx] = action.payload
+      }
+*/

@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-
-import medicosReducers from './reducers/cadastroMedico'
+import pacientesReducer from './reducers/cadastroPaciente'
 
 const store = configureStore({
-  reducer: {
-    medicos: medicosReducers
-  }
+	reducer: {
+		pacientes: pacientesReducer
+	}
 })
 
 export type RootReducer = ReturnType<typeof store.getState>
