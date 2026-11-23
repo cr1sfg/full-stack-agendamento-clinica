@@ -10,8 +10,7 @@ Trabalho do **Grau B — Desenvolvimento do Frontend**, disciplina de **Implemen
 
 ## Vídeo de apresentação
 
-<!-- TODO: substituir pelo link público do vídeo (ou incluir o arquivo .mp4 na raiz do .zip) -->
-🎬 **Link do vídeo:** _a definir_
+[https://youtu.be/ia9i88FzWXA](https://youtu.be/ia9i88FzWXA)
 
 ---
 
