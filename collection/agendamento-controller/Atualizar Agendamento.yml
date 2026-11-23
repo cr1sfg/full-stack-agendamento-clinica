@@ -1,0 +1,30 @@
+info:
+  name: Atualizar Agendamento
+  type: http
+  seq: 4
+  tags:
+    - agendamento-controller
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/agendamentos/:id"
+  params:
+    - name: id
+      value: "1"
+      type: path
+  body:
+    type: json
+    data: |-
+      {
+        "medicoId": 1,
+        "pacienteId": 1,
+        "data": "2027-04-13T14:00:00"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

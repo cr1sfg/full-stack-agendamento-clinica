@@ -34,7 +34,10 @@ public class AgendamentoRegraService {
         }
 
         Long medicoId = agendamento.getMedico().getId();
-        if (agendamentoRepository.existsByMedico_IdAndData(medicoId, data)) {
+        boolean horarioOcupado = agendamento.getId() == null
+            ? agendamentoRepository.existsByMedico_IdAndData(medicoId, data)
+            : agendamentoRepository.existsByMedico_IdAndDataAndIdNot(medicoId, data, agendamento.getId());
+        if (horarioOcupado) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "O médico já possui um agendamento neste horário.");
         }
     }

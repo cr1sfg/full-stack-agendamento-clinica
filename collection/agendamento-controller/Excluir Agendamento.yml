@@ -1,0 +1,22 @@
+info:
+  name: Excluir Agendamento
+  type: http
+  seq: 5
+  tags:
+    - agendamento-controller
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/agendamentos/:id"
+  params:
+    - name: id
+      value: "1"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

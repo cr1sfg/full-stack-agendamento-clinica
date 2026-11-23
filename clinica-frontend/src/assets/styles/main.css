@@ -1,0 +1,80 @@
+/*
+ * Estilos globais. Os componentes visuais vêm do Element Plus;
+ * aqui ficam apenas o layout geral e pequenos utilitários.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Segoe UI', Arial, sans-serif;
+  color: var(--el-text-color-primary);
+  background: #f2f3f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  height: 100%;
+}
+
+a {
+  color: var(--el-color-primary);
+}
+
+/* ---------- Layout ---------- */
+.app {
+  height: 100vh;
+}
+.app-conteudo {
+  min-width: 0;
+}
+.app-main {
+  padding: 16px;
+  overflow-y: auto;
+}
+@media (min-width: 768px) {
+  .app-main {
+    padding: 20px 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .app-main {
+    padding: 12px;
+  }
+  .el-card__body {
+    padding: 12px;
+  }
+}
+
+/* ---------- Tabelas ---------- */
+.el-table .linha-clicavel {
+  cursor: pointer;
+}
+.tabela-rodape {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* ---------- Utilitários ---------- */
+.mt-16 {
+  margin-top: 16px;
+}
+.texto-secundario {
+  color: var(--el-text-color-secondary);
+  font-size: 12px;
+}
+/* Texto de ajuda abaixo do campo no el-form-item (o conteúdo do item é flex) */
+.el-form-item__content > .texto-secundario {
+  width: 100%;
+  line-height: 1.6;
+}
+.mono {
+  font-variant-numeric: tabular-nums;
+}

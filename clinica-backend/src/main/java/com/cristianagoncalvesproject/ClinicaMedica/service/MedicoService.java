@@ -7,6 +7,7 @@ import com.cristianagoncalvesproject.ClinicaMedica.dto.MedicoResponse;
 import com.cristianagoncalvesproject.ClinicaMedica.dto.MedicoUpdateRequest;
 import com.cristianagoncalvesproject.ClinicaMedica.mapper.MedicoMapper;
 import com.cristianagoncalvesproject.ClinicaMedica.model.Medico;
+import com.cristianagoncalvesproject.ClinicaMedica.repository.AgendamentoRepository;
 import com.cristianagoncalvesproject.ClinicaMedica.repository.MedicoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MedicoService {
     private final MedicoRepository medicoRepository;
+    private final AgendamentoRepository agendamentoRepository;
     private final MedicoMapper medicoMapper;
 
     public List<MedicoResponse> listarTodos() {
@@ -64,6 +66,10 @@ public class MedicoService {
     public void excluir(Long id) {
         if (!medicoRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Médico não encontrado.");
+        }
+        if (agendamentoRepository.existsByMedico_Id(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                "Não é possível excluir o médico: existem agendamentos vinculados a ele.");
         }
         medicoRepository.deleteById(id);
     }

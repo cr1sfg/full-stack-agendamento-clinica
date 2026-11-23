@@ -12,7 +12,10 @@ import com.cristianagoncalvesproject.ClinicaMedica.exception.CpfJaCadastradoExce
 import com.cristianagoncalvesproject.ClinicaMedica.exception.PacienteNaoEncontradoException;
 import com.cristianagoncalvesproject.ClinicaMedica.mapper.PacienteMapper;
 import com.cristianagoncalvesproject.ClinicaMedica.model.Paciente;
+import com.cristianagoncalvesproject.ClinicaMedica.repository.AgendamentoRepository;
 import com.cristianagoncalvesproject.ClinicaMedica.repository.PacienteRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class PacienteService {
 
     private final PacienteRepository repository;
+    private final AgendamentoRepository agendamentoRepository;
     private final PacienteMapper pacienteMapper;
 
     public PacienteResponseDTO cadastrar(CriarPacienteRequestDTO request) {
@@ -74,6 +78,10 @@ public class PacienteService {
     public void deletar(Long id) {
         if (!repository.existsById(id)) {
             throw new PacienteNaoEncontradoException();
+        }
+        if (agendamentoRepository.existsByPaciente_Id(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                "Não é possível excluir o paciente: existem agendamentos vinculados a ele.");
         }
         repository.deleteById(id);
     }

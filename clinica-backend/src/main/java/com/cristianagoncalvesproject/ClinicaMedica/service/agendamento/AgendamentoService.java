@@ -46,8 +46,32 @@ public class AgendamentoService {
     }
 
     public AgendamentoResponseDTO buscarPorId(Long id) {
-        Agendamento agendamento = agendamentoRepository.findById(id)
+        return agendamentoMapper.toResponseDTO(buscarEntidade(id));
+    }
+
+    public AgendamentoResponseDTO atualizar(Long id, AgendamentoRequestDTO request) {
+        Agendamento agendamento = buscarEntidade(id);
+        Medico medico = medicoRepository.findById(request.medicoId())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Médico não encontrado."));
+        Paciente paciente = pacienteRepository.findById(request.pacienteId())
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente não encontrado."));
+
+        agendamento.setMedico(medico);
+        agendamento.setPaciente(paciente);
+        agendamento.setData(request.data());
+        agendamentoRegraService.validar(agendamento);
+        return agendamentoMapper.toResponseDTO(agendamentoRepository.save(agendamento));
+    }
+
+    public void excluir(Long id) {
+        if (!agendamentoRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Agendamento não encontrado.");
+        }
+        agendamentoRepository.deleteById(id);
+    }
+
+    private Agendamento buscarEntidade(Long id) {
+        return agendamentoRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Agendamento não encontrado."));
-        return agendamentoMapper.toResponseDTO(agendamento);
     }
 }
