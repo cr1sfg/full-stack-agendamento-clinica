@@ -1,13 +1,12 @@
 # Sistema de Agendamento de Clínica Médica
 
-Trabalho do **Grau B — Desenvolvimento de Frontend** da Atividade Acadêmica **Implementação de Software** (Unisinos, 2026/2).
+Trabalho do **Grau B — Desenvolvimento do Frontend**, disciplina de **Implementação de Software** (Unisinos, 2026/2).
 
 ## Integrantes
 
-<!-- TODO: preencher com o nome completo de todos os integrantes -->
-- Nome Completo do Integrante 1
-- Nome Completo do Integrante 2
-- Nome Completo do Integrante 3
+- Bruno Schmidt, RA 1833303
+- Cristiana Gonçalves, RA 1967675
+
 
 ## Vídeo de apresentação
 
@@ -34,8 +33,7 @@ Médicos e pacientes com agendamentos vinculados não podem ser excluídos (a AP
 ```
 .
 ├── clinica-backend/       # API REST — Spring Boot 4 + JPA + Flyway + PostgreSQL (Grau A, atualizado)
-├── clinica-frontend-vue/  # Interface web — Vue 3 + Vite + Vue Router + Element Plus (entrega do Grau B)
-├── clinica-frontend/      # Outra versão do frontend, em React (não faz parte da entrega do Grau B)
+├── clinica-frontend/  # Interface web — Vue 3 + Vite + Vue Router + Element Plus (entrega do Grau B)
 └── collection/            # Coleção de requisições (Bruno) para testar a API manualmente
 ```
 
@@ -88,7 +86,7 @@ Médicos e pacientes com agendamentos vinculados não podem ser excluídos (a AP
 - **CORS** liberado para o servidor de desenvolvimento do frontend (`config/CorsConfig.java`). As origens
   permitidas vêm da propriedade `app.cors.allowed-origins` (padrão: `http://localhost:5173` e
   `http://127.0.0.1:5173`) e podem ser trocadas pela variável de ambiente `CORS_ALLOWED_ORIGINS`.
-- **Erros padronizados** em `ProblemDetail` (RFC 9457) com mensagem legível em `detail` e, nos erros de
+- **Erros padronizados** em `ProblemDetail` com mensagem legível em `detail` e, nos erros de
   validação, um mapa `errors` campo → mensagem (`exception/GlobalExceptionHandler.java`). O frontend exibe
   essas mensagens ao usuário.
 - **Edição e exclusão de agendamentos** (`PUT` e `DELETE /agendamentos/{id}`), para completar o CRUD da
@@ -143,7 +141,7 @@ A interface usa a biblioteca de componentes **Element Plus** (layout com menu la
 seletores de data, mensagens e diálogos), com o idioma configurado para português (`pt-br`).
 
 ```
-clinica-frontend-vue/src
+clinica-frontend/src
 ├── assets/            # logo e estilos globais (styles/main.css: layout e utilitários)
 ├── components/
 │   ├── layout/        # AppSidebar (menu lateral) e AppHeader (breadcrumb + recolher menu)
@@ -188,17 +186,7 @@ clinica-frontend-vue/src
 | ----------------------------- | ------------------------------------------------------------------------------------------------- |
 | `vue` 3                       | Framework da interface (Composition API com `<script setup>`)                                   |
 | `vue-router` 4                | Navegação entre telas (requisito do trabalho)                                                     |
-| `element-plus`                | Biblioteca de componentes UI: layout, tabela com ordenação, paginação, formulários com validação, seletores de data, mensagens e diálogos de confirmação |
-| `@element-plus/icons-vue`     | Ícones do menu e dos botões, no mesmo estilo do Element Plus                                     |
-| `axios`                       | Cliente HTTP com instância configurada (URL base, timeout) e interceptor para padronizar os erros |
+| `element-plus`                | Biblioteca de componentes UI para ter uma base sólida de design.                                 |
+| `@element-plus/icons-vue`     | Ícones do Element Plus                                     |
+| `axios`                       | Maior costume com a biblioteca em contrapartida com o Fetch API nativo.                          |
 | `vite` + `@vitejs/plugin-vue` | Servidor de desenvolvimento, build e leitura das variáveis de ambiente (`.env`)                   |
-
----
-
-## Gerando o arquivo de entrega (.zip)
-
-As pastas de dependências e de build não entram no zip. A partir da raiz do repositório:
-
-```bash
-zip -r entrega-grau-b.zip README.md clinica-backend clinica-frontend-vue collection -x "*/node_modules/*" "*/target/*" "*/dist/*" "*/.DS_Store" "*/develop/postgres_data/*"
-```

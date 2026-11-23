@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "frontend",
+      "runtimeExecutable": "/opt/homebrew/bin/npm",
+      "runtimeArgs": ["--prefix", "clinica-frontend-vue", "run", "dev"],
+      "port": 5173
+    }
+  ]
+}
