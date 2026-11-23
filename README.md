@@ -33,9 +33,10 @@ Médicos e pacientes com agendamentos vinculados não podem ser excluídos (a AP
 
 ```
 .
-├── clinica-backend/    # API REST — Spring Boot 4 + JPA + Flyway + PostgreSQL (Grau A, atualizado)
-├── clinica-frontend/   # Interface web — Vue 3 + Vite + Vue Router (Grau B)
-└── collection/         # Coleção de requisições (Bruno) para testar a API manualmente
+├── clinica-backend/       # API REST — Spring Boot 4 + JPA + Flyway + PostgreSQL (Grau A, atualizado)
+├── clinica-frontend-vue/  # Interface web — Vue 3 + Vite + Vue Router + Element Plus (entrega do Grau B)
+├── clinica-frontend/      # Outra versão do frontend, em React (não faz parte da entrega do Grau B)
+└── collection/            # Coleção de requisições (Bruno) para testar a API manualmente
 ```
 
 ---
@@ -101,7 +102,7 @@ Médicos e pacientes com agendamentos vinculados não podem ser excluídos (a AP
 **Pré-requisitos:** Node.js 18.18 ou superior (com npm). O backend precisa estar rodando.
 
 ```bash
-cd clinica-frontend
+cd clinica-frontend-vue
 cp .env.example .env      # opcional: .env.development já aponta para http://localhost:8001
 npm install
 npm run dev
@@ -142,7 +143,7 @@ A interface usa a biblioteca de componentes **Element Plus** (layout com menu la
 seletores de data, mensagens e diálogos), com o idioma configurado para português (`pt-br`).
 
 ```
-clinica-frontend/src
+clinica-frontend-vue/src
 ├── assets/            # logo e estilos globais (styles/main.css: layout e utilitários)
 ├── components/
 │   ├── layout/        # AppSidebar (menu lateral) e AppHeader (breadcrumb + recolher menu)
@@ -199,5 +200,5 @@ clinica-frontend/src
 As pastas de dependências e de build não entram no zip. A partir da raiz do repositório:
 
 ```bash
-zip -r entrega-grau-b.zip README.md clinica-backend clinica-frontend collection -x "*/node_modules/*" "*/target/*" "*/dist/*" "*/.DS_Store" "*/develop/postgres_data/*"
+zip -r entrega-grau-b.zip README.md clinica-backend clinica-frontend-vue collection -x "*/node_modules/*" "*/target/*" "*/dist/*" "*/.DS_Store" "*/develop/postgres_data/*"
 ```
