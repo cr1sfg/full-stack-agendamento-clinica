@@ -3,13 +3,6 @@ import { normalizarTexto } from '@/utils/formatters'
 
 /**
  * Busca textual + filtros extras + ordenação + paginação aplicados no cliente sobre uma lista.
- *
- * @param itens                 ref/computed com o array original
- * @param opcoes.camposBusca    funções (item) => texto usadas na busca textual
- * @param opcoes.ordenacoes     { chave: (item) => valor comparável } — chave = `prop` da coluna na tabela
- * @param opcoes.ordenacaoInicial { prop, order: 'ascending' | 'descending' }
- * @param opcoes.filtros        computed com array de predicados (item) => boolean
- * @param opcoes.tamanhoPagina  itens por página (0 = sem paginação)
  */
 export function useListaFiltrada(
   itens,
