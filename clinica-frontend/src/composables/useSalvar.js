@@ -3,9 +3,7 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 
 /**
- * Fluxo padrão de envio de formulário (cadastro ou edição): controla o estado `salvando`,
- * mostra o feedback ao usuário, repassa ao formulário os erros de campo vindos da API
- * e navega para a tela de detalhe do registro salvo.
+ * Composição para gerenciar salvamentos, podendo ser criação ou atualização de dados.
  */
 export function useSalvar({ criar, atualizar, rotaDetalhe, mensagens }) {
   const router = useRouter()

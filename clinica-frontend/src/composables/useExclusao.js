@@ -2,8 +2,7 @@ import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 /**
- * Fluxo padrão de exclusão: pede confirmação explícita (ElMessageBox), chama o service,
- * exibe o feedback (ElMessage) e executa `aoExcluir` em caso de sucesso.
+ * Exclusão de itens com confirmação do usuário.
  */
 export function useExclusao(funcaoExcluir) {
   const excluindo = ref(false)

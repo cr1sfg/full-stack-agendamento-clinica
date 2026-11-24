@@ -99,7 +99,7 @@ Médicos e pacientes com agendamentos vinculados não podem ser excluídos (a AP
 **Pré-requisitos:** Node.js 18.18 ou superior (com npm). O backend precisa estar rodando.
 
 ```bash
-cd clinica-frontend-vue
+cd clinica-frontend
 cp .env.example .env      # opcional: .env.development já aponta para http://localhost:8001
 npm install
 npm run dev
